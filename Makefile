@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g
-OBJECTS = unwind-stack.o main.o
+OBJECTS = unwind_stack.o main.o
 
 # Default target
 all: program
@@ -14,8 +14,8 @@ program: $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Explicit dependencies
-unwind-stack.o: unwind-stack.c unwind-stack.h
-main.o: main.c unwind-stack.h
+unwind_stack.o: unwind_stack.s
+main.o: main.c
 
 # Run the program
 run: program

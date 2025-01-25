@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "unwind-stack.h"
 
-int magicNumber()
-{
+extern int unwind_stack(void **backtrace, int max_frames);
+
+int magicNumber() {
     const int MAX_STACK_FRAMES = 25;
     void *backtrace[MAX_STACK_FRAMES];
 
@@ -10,34 +10,27 @@ int magicNumber()
 
     printf("Found %d frames\n", frames_count);
 
-    for (int i = 0; i < frames_count; i++)
-    {
+    for (int i = 0; i < frames_count; i++) {
         printf("frame #%d: %p\n", i, backtrace[i]);
     }
 
     return 0;
 }
 
-int check(int x)
-{
+int check(int x) {
     return x == magicNumber();
 }
 
-int add(int x)
-{
-    if (check(x))
-    {
+int add(int x) {
+    if (check(x)) {
         x += 1;
-    }
-    else
-    {
+    } else {
         x -= 1;
     }
     return x;
 }
 
-int main()
-{
+int main() {
     int x = 0;
     x = add(x);
     return 0;
